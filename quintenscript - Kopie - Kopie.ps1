@@ -7,12 +7,12 @@ $flat = 0
 $index = ([byte][char]$ton) - 97
 $index = ($index * 2) % 13
 
-## Bitweise Grenzkorrektur: -1 wenn Bedingung erfüllt, sonst 0
+## Bitweise Grenzkorrektur: -1 wenn Bedingung erfÃ¼llt, sonst 0
 $index += (3 - $index) -shr 31
 $index += (7 - $index) -shr 31
 
 #Variante mit logik statt arithmetik
-#$index -= [int]($index -gt 2)
+#$index -= [int]($index -gt 3)
 #$index -= [int]($index -gt 7)
 
 # Tonartverschiebung + Mollanpassung
@@ -26,10 +26,11 @@ $index = ($index + 6 * [int]($index % 2 -ne 0)) % 12
 echo "Anzahl Kreuz: $index , Anzahl b: $(12 - $index)"
 
 
-#immer +7 halbtöne
+#immer +7 halbtÃ¶ne
 #c, g, d, a, e, h, fis, cis
 #fis, cis, gis, dis, ais, eis, his
 
 
 #a, f, b, es ,as, des, ges, ces
+
 #b, es as, des, ges, ces, fes
