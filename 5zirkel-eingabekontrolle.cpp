@@ -25,7 +25,7 @@ int prompt_read<int>(const std::string& message) {
     std::cin >> s;
     bool negativ = false;
     int acc = 0;
-    for (int i = 0; i < s.size(); ++i) {
+    for (std::size_t i = 0; i < s.size(); ++i) {
         char c = s[i];
         
         if (i == 0 && c == '-') {
