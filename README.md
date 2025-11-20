@@ -6,3 +6,10 @@ getestet unter
 - windows, visual studio 2026 "insiders", c++ version 2023
 
 input-überprüfung und typesafety ist nicht 100% korrekt implementiert (copilot will dies mit mehr code absichern, aber egal...)
+
+
+
+mit c, unter arch:
+
+gcc -Wall -O2 main.c -o main
+./main
