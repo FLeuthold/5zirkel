@@ -51,7 +51,7 @@ int main() {
     int mode = 0;//0 = dur/ionisch, 1 = dorisch, 2 = phrygisch, 3 = lydisch, 4=mixolydisch, 5=moll/aeolisch, 6=lokrisch
     int halb = 0;
 
-    ton = prompt_read<char>("Stammton:");
+    ton = prompt_read<char>("Stammton \n c, d, e, f, g, a oder b \n (ja, h geht nicht, bitte b...) \n bitte kleinbuchstabe \n ohne 'is' oder 'es'\n :");
     if (ton < 97 || ton >103) {
         
         std::print("ton nicht verfügbar\n");
@@ -63,7 +63,7 @@ int main() {
         std::print("modus nicht verfügbar\n");
         return 3;
     }
-    halb = prompt_read<int>("um wieviele halbtöne erhöhen \n (vertiefen ist einfach negativ erhöhen):");
+    halb = prompt_read<int>("um wieviele halbtöne erhöhen \n (vertiefen ist einfach negativ erhöhen)\n:");
     int wurst = 2 * ((ton - 1) % 7);
     wurst -= (int)(wurst > 4);
     wurst += halb - (2 * mode);
