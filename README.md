@@ -1,4 +1,5 @@
 g++ -std=c++23 -Wall -Wextra -O2 main.cpp -o main
+
 ./main
 
 getestet unter 
@@ -12,4 +13,5 @@ input-überprüfung und typesafety ist nicht 100% korrekt implementiert (copilot
 mit c, unter arch:
 
 gcc -Wall -O2 main.c -o main
+
 ./main
