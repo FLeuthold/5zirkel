@@ -23,13 +23,26 @@ int prompt_read<int>(const std::string& message) {
     std::cout << message;
     std::string s;
     std::cin >> s;
+    bool negativ = false;
     int acc = 0;
     for (unsigned i = 0; i < s.size(); ++i) {
         char c = s[i];
+        
+        if (i == 0 && c == '-') {
+            negativ = true;
+            continue;
+        }
         if (c < '0' || c > '9') throw std::runtime_error("not an integer");
         acc = acc * 10 + (c - '0');
     }
-    return acc;
+    if (negativ) {
+        std::cout << "negativ " << (-1 * acc) << std::endl;
+        return -1 * acc;
+    }
+    else {
+        return acc;
+    }
+    
 }
 //#include <scan>
 int main() {
