@@ -43,6 +43,7 @@
     calculate.onclick  = function() {
         
         let wurst =diatonic.value /*2*((diatonic.value - 1)%7)2*(([byte][char]$ton - 1)%7)*/
+        wurst *= 2
 wurst -= (+(wurst > 4))
 wurst +=  halftone.value - (2 * mode.value )
 wurst += (+(mode.value > 2))
