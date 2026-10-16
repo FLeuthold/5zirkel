@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<select name="diatonic" id="diatonic">
+  <option value="5">a</option>
+  <option value="6">b</option>
+  <option value="0" selected="selected">c</option>
+  <option value="1">d</option>
+  <option value="2">e</option>
+  <option value="3">f</option>
+  <option value="4">g</option>
+</select>
+<select name="mode" id="mode">
+  <option value="0" selected="selected">Ionian</option>
+  <option value="1">Dorian</option>
+  <option value="2">Phryigan</option>
+  <option value="3">Lydian</option>
+  <option value="4">Mixolydian</option>
+  <option value="5">Aeolian</option>
+  <option value="6">Locrian</option>
+</select>
+<select name="halftone" id="halftone">
+  <option value="-1">flat</option>
+  <option value="0" selected="selected">none</option>
+  <option value="1">sharp</option>
+</select>
+
+<input type="button" name="calculate" title="calculate" id="calculate"/>
+<br>
+<label id="output">
+
+</label>
+<br>
+<label id="output2">
+
+</label>
+<script defer>
+    calculate.onclick  = function() {
+        
+        let wurst =diatonic.value /*2*((diatonic.value - 1)%7)2*(([byte][char]$ton - 1)%7)*/
+wurst -= (+(wurst > 4))
+wurst +=  halftone.value - (2 * mode.value )
+wurst += (+(mode.value > 2))
+wurst += 12*(+(wurst < 0))
+if(mode.value === "0"){
+    output2.textContent = "wohltemp klavier prelude und fuge nummer " + (2*wurst + 1)
+}
+
+if(mode.value === "5"){
+    output2.textContent = "wohltemp klavier prelude und fuge nummer " + (2*(wurst-3) + 2)
+}
+wurst = (wurst + 6 * (+(wurst % 2 !== 0))) % 12
+
+output.textContent = ("anz kreuz: " + wurst + ", anz b: " + (12- wurst))
+
+     
+    };
+</script>
+
+</body>
+</html>
