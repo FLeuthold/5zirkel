@@ -8,6 +8,13 @@ $wurst -= [int]($wurst -gt 4)
 $wurst +=  $sharp - $flat - (2 * $mode )
 $wurst += [int]($mode -gt 2)
 $wurst += 12*[int]($wurst -lt 0)
+if($mode -eq 0){
+    "wohltemperiertes klavier (gilt für buch 1 und 2) prelude und fuge nummer " + (2*$wurst + 1)
+}
+
+if($mode -eq 5){
+    "wohltemperiertes klavier (gilt für buch 1 und 2) prelude und fuge nummer " + (2*($wurst - 3) + 2)
+}
 $wurst = ($wurst + 6 * [int]($wurst % 2 -ne 0)) % 12
 
 echo "anz kreuz: $wurst , anz b: $(12- $wurst)"
