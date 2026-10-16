@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
@@ -15,6 +16,13 @@
   <option value="3">f</option>
   <option value="4">g</option>
 </select>
+
+<select name="halftone" id="halftone">
+  <option value="-1">flat</option>
+  <option value="0" selected="selected">none</option>
+  <option value="1">sharp</option>
+</select>
+
 <select name="mode" id="mode">
   <option value="0" selected="selected">Ionian</option>
   <option value="1">Dorian</option>
@@ -24,13 +32,8 @@
   <option value="5">Aeolian</option>
   <option value="6">Locrian</option>
 </select>
-<select name="halftone" id="halftone">
-  <option value="-1">flat</option>
-  <option value="0" selected="selected">none</option>
-  <option value="1">sharp</option>
-</select>
 
-<input type="button" name="calculate" title="calculate" id="calculate"/>
+<button name="calculate" title="calculate" id="calculate">calculate</button>
 <br>
 <label id="output">
 
@@ -39,21 +42,26 @@
 <label id="output2">
 
 </label>
+<br>
+<!--<label id="disclaimer">
+"a, non, Aeolian", "a, sharp, Aeolian" und "b, none, Aeolian" gehen momentan nicht
+</label>-->
 <script defer>
     calculate.onclick  = function() {
         
         let wurst =diatonic.value /*2*((diatonic.value - 1)%7)2*(([byte][char]$ton - 1)%7)*/
-        wurst *= 2
+wurst *= 2
 wurst -= (+(wurst > 4))
 wurst +=  halftone.value - (2 * mode.value )
 wurst += (+(mode.value > 2))
 wurst += 12*(+(wurst < 0))
+output2.textContent=""
 if(mode.value === "0"){
-    output2.textContent = "wohltemp klavier prelude und fuge nummer " + (2*wurst + 1)
+    output2.textContent = "wohltemp klavier prelude und fuge nummer " + (2*wurst + 1)%24
 }
 
 if(mode.value === "5"){
-    output2.textContent = "wohltemp klavier prelude und fuge nummer " + ((2*(wurst-3) + 2)+24)%24
+    output2.textContent = "wohltemp klavier prelude und fuge nummer " + ((((2*(wurst-3) + 1)+24)%24)+1)
 }
 wurst = (wurst + 6 * (+(wurst % 2 !== 0))) % 12
 
