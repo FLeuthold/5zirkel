@@ -53,7 +53,7 @@ if(mode.value === "0"){
 }
 
 if(mode.value === "5"){
-    output2.textContent = "wohltemp klavier prelude und fuge nummer " + (2*(wurst-3) + 2)
+    output2.textContent = "wohltemp klavier prelude und fuge nummer " + ((2*(wurst-3) + 2)+24)%24
 }
 wurst = (wurst + 6 * (+(wurst % 2 !== 0))) % 12
 
