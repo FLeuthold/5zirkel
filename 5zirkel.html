@@ -46,7 +46,72 @@
 <!--<label id="disclaimer">
 "a, non, Aeolian", "a, sharp, Aeolian" und "b, none, Aeolian" gehen momentan nicht
 </label>-->
+<select name="vorzeichenArt" id="vorzeichenArt">
+  <option value="0" selected="selected">kreuz</option>
+  <option value="1">b</option>
+</select>
+<select name="vorzeichen" id="vorzeichen">
+  <option value="0" selected="selected">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+</select>
+
+<select name="wtcNr" id="wtcNr">
+  <option value="1" selected="selected">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+    <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+    <option value="14">14</option>
+  <option value="15">15</option>
+  <option value="16">16</option>
+  <option value="17">17</option>
+  <option value="18">18</option>
+  <option value="19">19</option>
+    <option value="20">20</option>
+  <option value="21">21</option>
+  <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+</select>
+
+<button name="wtcNrToAll" title="wtcNrToAll" id="wtcNrToAll">wtcNrToAll</button>
+<br>
 <script defer>
+    wtcNrToAll.onclick = function() {
+        mode.value = ""+(5*(+( wtcNr.value % 2 == 0)))
+        /*=(A16+REST(A16;2))/2-1*/
+        let halbton = ((+wtcNr.value + (+wtcNr.value % 2))/2) - 1;
+        /*=OBERGRENZE(B19/2;1)*/
+        let ganzton = Math.ceil(halbton / 2);
+        /*=B18+(B18>4)*/
+        let halbtonEF = halbton + (+(halbton > 4))
+        if(wtcNr.value == 3 || wtcNr.value == 4 || wtcNr.value == 8)
+        {
+             ganzton -= 1;
+        } else 
+        {
+             if(wtcNr.value == 17 || wtcNr.value == 21 || wtcNr.value == 22)
+             {
+                  ganzton += 1;
+             }  
+        }
+        halftone.value = (halbtonEF - 2 * ganzton )
+        diatonic.value = ganzton
+    }
     calculate.onclick  = function() {
         
         let wurst =diatonic.value /*2*((diatonic.value - 1)%7)2*(([byte][char]$ton - 1)%7)*/
