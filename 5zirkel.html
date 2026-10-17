@@ -93,11 +93,8 @@
 <script defer>
     wtcNrToAll.onclick = function() {
         mode.value = ""+(5*(+( wtcNr.value % 2 == 0)))
-        /*=(A16+REST(A16;2))/2-1*/
         let halbton = ((+wtcNr.value + (+wtcNr.value % 2))/2) - 1;
-        /*=OBERGRENZE(B19/2;1)*/
         let ganzton = Math.ceil(halbton / 2);
-        /*=B18+(B18>4)*/
         let halbtonEF = halbton + (+(halbton > 4))
         if(wtcNr.value == 3 || wtcNr.value == 4 || wtcNr.value == 8)
         {
@@ -109,8 +106,9 @@
                   ganzton += 1;
              }  
         }
+        console.log("ganzton nach " + ganzton )
         halftone.value = (halbtonEF - 2 * ganzton )
-        diatonic.value = ganzton
+        diatonic.value = ganzton 
     }
     calculate.onclick  = function() {
         
@@ -122,16 +120,23 @@ wurst += (+(mode.value > 2))
 wurst += 12*(+(wurst < 0))
 output2.textContent=""
 if(mode.value === "0"){
-    output2.textContent = "wohltemp klavier prelude und fuge nummer " + (2*wurst + 1)%24
+    wtcNr.value = (2*wurst + 1)%24
 }
 
 if(mode.value === "5"){
-    output2.textContent = "wohltemp klavier prelude und fuge nummer " + ((((2*(wurst-3) + 1)+24)%24)+1)
+      wtcNr.value = ((((2*(wurst-3) + 1)+24)%24)+1)
 }
 wurst = (wurst + 6 * (+(wurst % 2 !== 0))) % 12
 
-output.textContent = ("anz kreuz: " + wurst + ", anz b: " + (12- wurst))
-
+if(wurst < 8){
+    vorzeichenArt.value = "0"
+    vorzeichen.value = wurst
+}
+else
+{
+    vorzeichenArt.value = "1" 
+    vorzeichen.value = (12 - wurst)
+}
      
     };
 </script>
