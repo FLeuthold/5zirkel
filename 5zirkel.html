@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-<select name="diatonic" id="diatonic">
+<select name="natural" id="natural">
   <option value="5">a</option>
   <option value="6">b</option>
   <option value="0" selected="selected">c</option>
@@ -94,6 +94,9 @@
 <!--<label id="disclaimer">
 "a, non, Aeolian", "a, sharp, Aeolian" und "b, none, Aeolian" gehen momentan nicht
 </label>-->
+
+
+
 <script defer>
     vorzeichenAndModeToAll.onclick = function() {
         
@@ -101,6 +104,15 @@
 
 
     }
+    
+    vorzeichenAndHalftoneToAll.onclick = function() {
+        
+        
+
+
+    }
+    
+    
     wtcNrToAll.onclick = function() {
         mode.value = ""+(5*(+( wtcNr.value % 2 == 0)))
         let halbton = ((+wtcNr.value + (+wtcNr.value % 2))/2) - 1;
@@ -118,11 +130,11 @@
         }
         console.log("ganzton nach " + ganzton )
         halftone.value = (halbtonEF - 2 * ganzton )
-        diatonic.value = ganzton 
+        natural.value = ganzton 
     }
     halftoneAndModeToAll.onclick  = function() {
         
-        let wurst =diatonic.value /*2*((diatonic.value - 1)%7)2*(([byte][char]$ton - 1)%7)*/
+        let wurst = natural.value /*2*((natural.value - 1)%7)2*(([byte][char]$ton - 1)%7)*/
         wurst *= 2
         wurst -= (+(wurst > 4))
         wurst +=  halftone.value - (2 * mode.value )
