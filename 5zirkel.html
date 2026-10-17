@@ -33,19 +33,9 @@
   <option value="6">Locrian</option>
 </select>
 
-<button name="calculate" title="calculate" id="calculate">calculate</button>
+<button name="halftoneAndModeToAll" title="halftoneAndModeToAll" id="halftoneAndModeToAll">halftoneAndModeToAll</button>
 <br>
-<label id="output">
 
-</label>
-<br>
-<label id="output2">
-
-</label>
-<br>
-<!--<label id="disclaimer">
-"a, non, Aeolian", "a, sharp, Aeolian" und "b, none, Aeolian" gehen momentan nicht
-</label>-->
 <select name="vorzeichenArt" id="vorzeichenArt">
   <option value="0" selected="selected">kreuz</option>
   <option value="1">b</option>
@@ -60,7 +50,10 @@
   <option value="6">6</option>
   <option value="7">7</option>
 </select>
+<button name="vorzeichenAndModeToAll" title="vorzeichenAndModeToAll" id="vorzeichenAndModeToAll">vorzeichenAndModeToAll</button>
 
+<button name="vorzeichenAndHalftoneToAll" title="vorzeichenAndHalftoneToAll" id="vorzeichenAndHalftoneToAll">vorzeichenAndHalftoneToAll</button>
+<br>
 <select name="wtcNr" id="wtcNr">
   <option value="1" selected="selected">1</option>
   <option value="2">2</option>
@@ -90,7 +83,24 @@
 
 <button name="wtcNrToAll" title="wtcNrToAll" id="wtcNrToAll">wtcNrToAll</button>
 <br>
+<label id="output">
+
+</label>
+<br>
+<label id="output2">
+
+</label>
+<br>
+<!--<label id="disclaimer">
+"a, non, Aeolian", "a, sharp, Aeolian" und "b, none, Aeolian" gehen momentan nicht
+</label>-->
 <script defer>
+    vorzeichenAndModeToAll.onclick = function() {
+        
+        
+
+
+    }
     wtcNrToAll.onclick = function() {
         mode.value = ""+(5*(+( wtcNr.value % 2 == 0)))
         let halbton = ((+wtcNr.value + (+wtcNr.value % 2))/2) - 1;
@@ -110,33 +120,33 @@
         halftone.value = (halbtonEF - 2 * ganzton )
         diatonic.value = ganzton 
     }
-    calculate.onclick  = function() {
+    halftoneAndModeToAll.onclick  = function() {
         
         let wurst =diatonic.value /*2*((diatonic.value - 1)%7)2*(([byte][char]$ton - 1)%7)*/
-wurst *= 2
-wurst -= (+(wurst > 4))
-wurst +=  halftone.value - (2 * mode.value )
-wurst += (+(mode.value > 2))
-wurst += 12*(+(wurst < 0))
-output2.textContent=""
-if(mode.value === "0"){
-    wtcNr.value = (2*wurst + 1)%24
-}
+        wurst *= 2
+        wurst -= (+(wurst > 4))
+        wurst +=  halftone.value - (2 * mode.value )
+        wurst += (+(mode.value > 2))
+        wurst += 12*(+(wurst < 0))
+        output2.textContent=""
+        if(mode.value === "0"){
+            wtcNr.value = (2*wurst + 1)%24
+        }
+        
+        if(mode.value === "5"){
+              wtcNr.value = ((((2*(wurst-3) + 1)+24)%24)+1)
+        }
+        wurst = (wurst + 6 * (+(wurst % 2 !== 0))) % 12
 
-if(mode.value === "5"){
-      wtcNr.value = ((((2*(wurst-3) + 1)+24)%24)+1)
-}
-wurst = (wurst + 6 * (+(wurst % 2 !== 0))) % 12
-
-if(wurst < 8){
-    vorzeichenArt.value = "0"
-    vorzeichen.value = wurst
-}
-else
-{
-    vorzeichenArt.value = "1" 
-    vorzeichen.value = (12 - wurst)
-}
+        if(wurst < 8){
+            vorzeichenArt.value = "0"
+            vorzeichen.value = wurst
+        }
+        else
+        {
+            vorzeichenArt.value = "1" 
+            vorzeichen.value = (12 - wurst)
+        }
      
     };
 </script>
